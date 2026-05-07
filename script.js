@@ -28,7 +28,7 @@ if (totalNumberofPlants > eigthyPercentOfMax) {
 console.log('Pruned. Too many plants...')
 
 
-}else if (totalNumberofPlants >= fiftyPercentofMAx && totalNumberofPlants <=eigthyPercentOfMax) {
+}else if (totalNumberofPlants >= fiftyPercentofMAx ) {
     console.log('Monitor')
 }else {
 
@@ -41,10 +41,31 @@ console.log('Pruned. Too many plants...')
 
 totalNumberofPlants = totalNumberofPlants * 2
 console.log('Total Number of Plants week 2: ', totalNumberofPlants)
+if (totalNumberofPlants > eigthyPercentOfMax) {
+console.log('Pruned. Too many plants...')
+
+
+}else if (totalNumberofPlants >= fiftyPercentofMAx ) {
+    console.log('Monitor')
+}else {
+
+    console.log('Planted')
+}
 
 // after 3 weeks
 totalNumberofPlants = totalNumberofPlants * 2
 console.log('Total Number of Plants week 3: ', totalNumberofPlants)
+
+if (totalNumberofPlants > eigthyPercentOfMax) {
+console.log('Pruned. Way too many plants...')
+
+
+}else if (totalNumberofPlants >= fiftyPercentofMAx ) {
+    console.log('Monitor')
+}else {
+
+    console.log('Planted')
+}
 
 
 
