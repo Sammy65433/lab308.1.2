@@ -106,6 +106,72 @@ console.log('Pruned. Way too many plants...')
 
 // https://github.com/Sammy65433/lab308.1.2
 
+// Part 2: Thinking Bigger
+// The conservation area in which the garden is located has multiple other gardens. 
+// Using the logic you have already created, determine:
+// The amount of additional space that would be required if the scientists were to start with 100 plants, and did not prune them for 10 weeks.
+// If the space remained circular, what would be the radius of this expanded garden?
+
+let plantsAfter10Weeks = startPlants * (2 ** 10);
+
+let factor = 1;   // initialize a factor variable to keep track of the growth multiplier
+for (let i = 0; i < 10; i++) {   // loop for 10 weeks
+  factor *= 2;        // multiply by 2 each iteration
+}
+// let plantsAfter10Weeks = startPlants * factor // calculate the number of plants after 10 weeks 
+// using the growth factor
+
+console.log('Plants after 10 weeks: ', plantsAfter10Weeks)
+
+let spaceRequired = plantsAfter10Weeks * PLANT_SPACE // calculate the total space required for 
+// the plants after 10 weeks
+console.log('Space required for 100 plants after 10 weeks: ', spaceRequired)
+
+let newRadius = Math.sqrt(spaceRequired / PI) // calculate the new radius of the garden 
+// based on the required space
+console.log('New radius of the garden: ', newRadius)
+
+
+
+
+
+
+// Part 3: Errors in Judgement
+// The scientists decided not to listen to your recommendations, and have instead started with 100 plants in the original 5-meter-radius garden.
+// Use try and catch to wrap your work in an error-handling block. If the amount of space required to hold the originally provided number of plants exceeds the amount of space available, throw a new error and log an appropriate message.
+
+const INITIAL_PLANTS = 100;   // scientists ignore your advice and start with 100
+const WEEKS_TO_GROW = 10;     // we look 10 weeks ahead
+
+let growthFactor = 1;
+for (let i = 0; i < WEEKS_TO_GROW; i++) {
+    growthFactor = growthFactor * 2; // multiply by 2 each week
+    // after the loop growthFactor will be 2^10, which is the growth multiplier after 10 weeks
+}
+
+let plantsAfter10WeeksWith100 = INITIAL_PLANTS * growthFactor; // calculate the number of plants after 10 weeks starting with 100 plants
+let totalSpaceNeeded = plantsAfter10WeeksWith100 * PLANT_SPACE; 
+//  102 400 * 0.8 = 81 920 square meters required after 10 weeks with 100 starting plants
+
+try {   
+    if (totalSpaceNeeded > AREA) {  // if the space needed exceeds the area of the original garden
+        throw new Error('The amount of space required exceeds the available space in the original garden.'); // throw an error with an appropriate message
+    } else {
+        console.log('The plants can be accommodated within the original garden.'); // if the space needed does not exceed the area, log that it can be accommodated
+    }
+} catch (error) {
+    console.error(error.message); // catch the error and log the error message
+}
+
+// Show Variables for debugging purposes
+console.log('--- Debug info ---------------------------------------------------');
+console.log('Initial plants           :', INITIAL_PLANTS);
+console.log('Weeks of growth          :', WEEKS_TO_GROW);
+console.log('Growth factor (2^10)     :', growthFactor);
+console.log('Plants after 10 weeks    :', plantsAfter10Weeks);
+console.log('Space needed (m²)       :', totalSpaceNeeded);
+console.log('Garden area (m²)        :', AREA);
+
 
 // growth - Plants doubled 
 // function plantsAfterWeeks(start, weeks)  {
